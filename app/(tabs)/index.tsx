@@ -3,8 +3,6 @@ import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native'
 import { useSharedValue, withTiming } from 'react-native-reanimated'
-
-// Composants
 import ActionButtons from '@/components/wallet/ActionButtons'
 import BalanceSection from '@/components/wallet/BalanceSection'
 import Header from '@/components/wallet/Header'
@@ -12,10 +10,8 @@ import SpendSaveSection from '@/components/wallet/SpendSaveSection'
 import TransactionsSection from '@/components/wallet/TransactionsSection'
 
 const WalletScreen = () => {
-  // État pour gérer l'affichage/masquage du solde
   const [hideBalance, setHideBalance] = React.useState(false)
 
-  // Animation pour les cartes de devises
   const cardOffset = useSharedValue(0)
   const isExpanded = useSharedValue(false)
 
@@ -24,7 +20,7 @@ const WalletScreen = () => {
     cardOffset.value = withTiming(1, { duration: 500 })
   }, [])
 
-  // Fonction pour formater les montants avec séparateurs de milliers
+  
   const formatAmount = (amount: number): string => {
     return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
