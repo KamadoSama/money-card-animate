@@ -5,6 +5,15 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { SharedValue } from 'react-native-reanimated';
 
 const OFFSET = 28;
+// Constantes pour l'animation
+const BASE_DURATION = 500;
+const DURATION_MULTIPLIER = 700;
+const EXPANDED_MOVE_MULTIPLIER = 30;
+const EXPANDED_INDEX_FACTOR = 1.1;
+const COLLAPSED_MOVE_MULTIPLIER = OFFSET;
+const DAMPING_VALUE = 10;
+const MAX_CARDS = 5; 
+const DEFAULT_CARD_OFFSET = 4; 
 
 interface FloatingCardProps {
   isExpanded: SharedValue<boolean>;
@@ -25,12 +34,14 @@ const FloatingCard: React.FC<FloatingCardProps> = ({
 }) => {
   const animatedStyles = useAnimatedStyle(() => {
     const SPRING_CONFIG = {
-      duration: isExpanded.value ? 500 : 700 * (5 - index),
+      duration: isExpanded.value ? BASE_DURATION : DURATION_MULTIPLIER * (MAX_CARDS - index),
       overshootClamping: true,
-      damping: 10,
+      damping: DAMPING_VALUE,
     };
     
-    const moveValue = isExpanded.value ? 30 * (5 - index * 1.1) : OFFSET * (4 - index);
+    const moveValue = isExpanded.value 
+      ? EXPANDED_MOVE_MULTIPLIER * (MAX_CARDS - index * EXPANDED_INDEX_FACTOR) 
+      : COLLAPSED_MOVE_MULTIPLIER * (DEFAULT_CARD_OFFSET - index);
     const translateValue = withSpring(-moveValue, SPRING_CONFIG);
 
     return {
