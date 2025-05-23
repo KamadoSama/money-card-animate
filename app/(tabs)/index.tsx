@@ -1,5 +1,4 @@
 import image from '@/constants/image'
-import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native'
 import { useSharedValue, withTiming } from 'react-native-reanimated'
@@ -32,7 +31,6 @@ const WalletScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="dark" />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
         <Header userName="Kamado" />
         
@@ -46,8 +44,8 @@ const WalletScreen = () => {
         />
         
         <ActionButtons />
-        <SpendSaveSection />
-        <TransactionsSection />
+        {/* <SpendSaveSection /> */}
+        {/* <TransactionsSection /> */}
       </ScrollView>
     </SafeAreaView>
   )

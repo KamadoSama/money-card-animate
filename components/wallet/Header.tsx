@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 40,
   },
   avatarContainer: {
     flexDirection: 'row',
